@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentleman's Wardrobe - Premium Men's Clothing</title>
+    <style>
+        :root {
+            --bg: #f4f4f5;
+            --card-bg: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #5a5a5a;
+            --accent: #1c1c1c;
+            --accent-gold: #b8944b;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1da851;
+            --border: #e5e5e5;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.13);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.25s ease;
+            --font-heading: 'Georgia', 'Times New Roman', serif;
+            --font-body: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ────────────────────────────── */
+        /* HEADER                         */
+        /* ────────────────────────────── */
+        .header {
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+        }
+        .header-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .brand {
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .brand span {
+            color: var(--accent-gold);
+        }
+        .header-contact {
+            font-size: 0.9rem;
+            color: #ccc;
+            white-space: nowrap;
+        }
+        .header-contact strong {
+            color: #fff;
+        }
+
+        /* ────────────────────────────── */
+        /* HERO                           */
+        /* ────────────────────────────── */
+        .hero {
+            background: linear-gradient(135deg, #1c1c1c 0%, #2d2d2d 40%, #1a1a1a 100%);
+            color: #fff;
+            text-align: center;
+            padding: 50px 24px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: var(--accent-gold);
+            opacity: 0.08;
+            border-radius: 50%;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .hero p {
+            color: #bbb;
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto 16px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: #1a1a1a;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ────────────────────────────── */
+        /* CATEGORY FILTER                */
+        /* ────────────────────────────── */
+        .category-bar {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            position: sticky;
+            top: 68px;
+            z-index: 90;
+            background: var(--bg);
+            padding-top: 14px;
+            padding-bottom: 10px;
+        }
+        .cat-btn {
+            padding: 9px 18px;
+            border-radius: 22px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            color: var(--text);
+            letter-spacing: 0.3px;
+        }
+        .cat-btn:hover {
+            border-color: var(--accent);
+            background: #fafafa;
+        }
+        .cat-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ────────────────────────────── */
+        /* PRODUCT GRID                   */
+        /* ────────────────────────────── */
+        .products-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 8px 24px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .products-container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 8px 12px 30px;
+            }
+            .category-bar {
+                top: 60px;
+                padding: 10px 8px;
+                gap: 5px;
+            }
+            .cat-btn {
+                padding: 7px 13px;
+                font-size: 0.78rem;
+            }
+            .header-inner {
+                padding: 0 12px;
+            }
+            .brand {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ────────────────────────────── */
+        /* PRODUCT CARD                   */
+        /* ────────────────────────────── */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .product-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        .product-card.out-of-stock {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Carousel */
+        .carousel-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 3.6;
+            overflow: hidden;
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+        .carousel-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .carousel-wrap img.active {
+            opacity: 1;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: #333;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+        .carousel-arrow:hover {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        .carousel-arrow.prev {
+            left: 8px;
+        }
+        .carousel-arrow.next {
+            right: 8px;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+        .carousel-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .carousel-dots span.active {
+            background: #fff;
+            width: 22px;
+            border-radius: 10px;
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 6;
+            background: #c0392b;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .product-badge.new {
+            background: #1a6b3c;
+        }
+        .product-badge.sale {
+            background: #c0392b;
+        }
+
+        /* Card body */
+        .card-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        .card-body .product-name {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .card-body .product-category-label {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .card-body .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+        .card-body .product-price .base-price {
+            text-decoration: line-through;
+            color: #999;
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin-left: 6px;
+        }
+        .price-note {
+            font-size: 0.78rem;
+            color: #888;
+            margin-top: -6px;
+        }
+
+        /* Color swatches */
+        .color-section label,
+        .size-section label,
+        .addons-section label {
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+        .color-swatch.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+            transform: scale(1.15);
+        }
+        .color-swatch .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .color-swatch:hover .tooltip {
+            display: block;
+        }
+
+        /* Size buttons */
+        .size-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .size-btn {
+            padding: 7px 14px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            min-width: 40px;
+            text-align: center;
+            color: var(--text);
+        }
+        .size-btn:hover {
+            border-color: #999;
+            background: #fafafa;
+        }
+        .size-btn.selected {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+        .size-btn.unavailable {
+            opacity: 0.35;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            pointer-events: none;
+        }
+
+        /* Add-ons */
+        .addons-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .addon-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            user-select: none;
+            padding: 4px 0;
+        }
+        .addon-item input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+        .addon-price {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        /* WhatsApp CTA */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 20px;
+            background: var(--whatsapp);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.4px;
+            margin-top: 4px;
+            text-decoration: none;
+        }
+        .whatsapp-btn:hover {
+            background: var(--whatsapp-dark);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            transform: translateY(-1px);
+        }
+        .whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        /* Floating WhatsApp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 200;
+            width: 58px;
+            height: 58px;
+            background: var(--whatsapp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+            transition: var(--transition);
+            animation: pulse-wa 2.5s infinite;
+            text-decoration: none;
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
+        }
+        .floating-whatsapp svg {
+            width: 30px;
+            height: 30px;
+        }
+        @keyframes pulse-wa {
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+            }
+            50% {
+                box-shadow: 0 4px 32px rgba(37, 211, 102, 0.7), 0 0 0 14px rgba(37, 211, 102, 0.08);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 28px 24px;
+            color: #888;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
+        /* Selection summary toast */
+        .selection-summary {
+            font-size: 0.78rem;
+            color: #666;
+            background: #f9f9f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-gold);
+            line-height: 1.4;
+        }
+        .selection-summary strong {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- HEADER                               -->
+    <!-- ══════════════════════════════════════ -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="brand">GENTLEMAN'S <span>WARDROBE</span></a>
+            <div class="header-contact">
+                📞 Order via WhatsApp: <strong id="header-wa-number">+254 712 345 678</strong>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- HERO                                 -->
+    <!-- ══════════════════════════════════════ -->
+    <section class="hero">
+        <h1>Elevate Your Style</h1>
+        <p>Premium men's clothing curated for the modern gentleman. From casual sweatpants to sharp dress shirts — we've got you covered.</p>
+        <span class="hero-badge">✦ New Collection 2026 ✦</span>
+    </section>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- CATEGORY FILTER                      -->
+    <!-- ══════════════════════════════════════ -->
+    <div class="category-bar" id="categoryBar">
+        <button class="cat-btn active" data-category="all">All</button>
+        <button class="cat-btn" data-category="sweatpants">Sweatpants</button>
+        <button class="cat-btn" data-category="cargopants">Cargo Pants</button>
+        <button class="cat-btn" data-category="jeans">Jeans</button>
+        <button class="cat-btn" data-category="long-sleeved">Long-Sleeved Tees</button>
+        <button class="cat-btn" data-category="shirts">Shirts</button>
+        <button class="cat-btn" data-category="closed-shoes">Closed Shoes</button>
+        <button class="cat-btn" data-category="open-shoes">Open Shoes</button>
+        <button class="cat-btn" data-category="short-sleeved">Short-Sleeved Tees</button>
+        <button class="cat-btn" data-category="others">Others</button>
+    </div>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- PRODUCT GRID (DYNAMICALLY RENDERED)  -->
+    <!-- ══════════════════════════════════════ -->
+    <div class="products-container" id="productsGrid"></div>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- FLOATING WHATSAPP BUTTON             -->
+    <!-- ══════════════════════════════════════ -->
+    <a href="#" class="floating-whatsapp" id="floatingWaBtn" title="Chat with us on WhatsApp" target="_blank" rel="noopener">
+        <!-- WhatsApp SVG Icon -->
+        <svg viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- FOOTER                               -->
+    <!-- ══════════════════════════════════════ -->
+    <footer class="footer">
+        &copy; 2026 Gentleman's Wardrobe. All rights reserved. | Premium Men's Fashion
+    </footer>
+
+    <script>
+        /* ================================================================
+           📝  EDITING GUIDE — CHANGE EVERYTHING BELOW THIS BLOCK
+           ================================================================
+           1. WHATSAPP NUMBER: Edit 'whatsappNumber' below (use international format, NO '+' sign)
+           2. CURRENCY SYMBOL: Edit 'currencySymbol'
+           3. PRODUCT IMAGES: Replace the image URLs inside each product's 'images' array
+           4. PRODUCT SIZES: Edit the 'sizes' array for each product
+           5. PRODUCT COLORS: Edit the 'colors' array (name + hex code) for each product
+           6. PRICES: Change 'basePrice' and 'priceVariations' (size-based upcharges)
+           7. ADD-ONS: Edit the 'addons' array for each product
+           8. ADD NEW PRODUCTS: Copy-paste a product object inside the PRODUCTS array
+           9. BADGES: Set badge to 'new', 'sale', or null for no badge
+           ================================================================ */
+
+        // ╔══════════════════════════════════════════════════════════╗
+        // ║  CONFIGURATION — EDIT THESE VALUES                      ║
+        // ╚══════════════════════════════════════════════════════════╝
+
+        const whatsappNumber = '254712345678'; // <-- CHANGE THIS to your WhatsApp number (no + sign, include country code)
+        const currencySymbol = 'KSh '; // <-- CHANGE CURRENCY SYMBOL if needed (e.g., '$', '€', 'KSh ', 'R ')
+
+        // ╔══════════════════════════════════════════════════════════╗
+        // ║  PRODUCT DATA — Add, remove, or edit products here      ║
+        // ║  Each product needs:                                    ║
+        // ║  - id (unique number)                                  ║
+        // ║  - name, category, images (array of URLs)              ║
+        // ║  - colors (array of {name, hex})                       ║
+        // ║  - sizes (array of strings)                            ║
+        // ║  - basePrice (number), priceVariations (object)        ║
+        // ║  - addons (array of {name, price})                     ║
+        // ║  - badge: 'new' | 'sale' | null                        ║
+        // ║  - description (short text)                            ║
+        // ╚══════════════════════════════════════════════════════════╝
+
+        const PRODUCTS = [{
+            id: 1,
+            name: 'Premium Fleece Sweatpants',
+            category: 'sweatpants',
+            images: [
+                'https://picsum.photos/seed/sweatpants1a/600/700',
+                'https://picsum.photos/seed/sweatpants1b/600/700',
+                'https://picsum.photos/seed/sweatpants1c/600/700',
+            ],
+            colors: [
+                { name: 'Charcoal', hex: '#36454F' },
+                { name: 'Navy', hex: '#1B3A5C' },
+                { name: 'Burgundy', hex: '#6B2020' },
+                { name: 'Olive', hex: '#4A5537' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 3500,
+            priceVariations: { 'XL': 300, 'XXL': 500 },
+            addons: [
+                { name: 'Gift Wrap', price: 200 },
+                { name: 'Express Delivery (24hrs)', price: 600 },
+                { name: 'Embroidered Initials', price: 450 },
+            ],
+            badge: 'new',
+            description: 'Ultra-soft fleece-lined sweatpants with tapered fit. Perfect for lounging or casual outings.',
+        }, {
+            id: 2,
+            name: 'Tactical Cargo Pants',
+            category: 'cargopants',
+            images: [
+                'https://picsum.photos/seed/cargo2a/600/700',
+                'https://picsum.photos/seed/cargo2b/600/700',
+                'https://picsum.photos/seed/cargo2c/600/700',
+            ],
+            colors: [
+                { name: 'Khaki', hex: '#C3B091' },
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Coyote Brown', hex: '#8B6914' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 4200,
+            priceVariations: { 'XL': 350, 'XXL': 550 },
+            addons: [
+                { name: 'Reinforced Knees', price: 400 },
+                { name: 'Gift Wrap', price: 200 },
+            ],
+            badge: null,
+            description: 'Durable ripstop cargo pants with 6 pockets. Rugged style meets everyday functionality.',
+        }, {
+            id: 3,
+            name: 'Slim Fit Stretch Jeans',
+            category: 'jeans',
+            images: [
+                'https://picsum.photos/seed/jeans3a/600/700',
+                'https://picsum.photos/seed/jeans3b/600/700',
+                'https://picsum.photos/seed/jeans3c/600/700',
+            ],
+            colors: [
+                { name: 'Indigo', hex: '#1B2A4A' },
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Light Wash', hex: '#7B8EA0' },
+                { name: 'Grey', hex: '#6B6B6B' },
+            ],
+            sizes: ['28', '30', '32', '34', '36', '38'],
+            basePrice: 3800,
+            priceVariations: { '36': 300, '38': 500 },
+            addons: [
+                { name: 'Hemming Service', price: 350 },
+                { name: 'Gift Wrap', price: 200 },
+            ],
+            badge: 'sale',
+            description: 'Stretch denim for all-day comfort. Modern slim fit with classic 5-pocket styling.',
+        }, {
+            id: 4,
+            name: 'Thermal Long-Sleeve Tee',
+            category: 'long-sleeved',
+            images: [
+                'https://picsum.photos/seed/longsleeve4a/600/700',
+                'https://picsum.photos/seed/longsleeve4b/600/700',
+                'https://picsum.photos/seed/longsleeve4c/600/700',
+            ],
+            colors: [
+                { name: 'White', hex: '#F5F5F5' },
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Heather Grey', hex: '#B8B8B8' },
+                { name: 'Rust', hex: '#8B3A1A' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 2200,
+            priceVariations: { 'XL': 200, 'XXL': 350 },
+            addons: [
+                { name: 'Gift Wrap', price: 200 },
+            ],
+            badge: null,
+            description: 'Waffle-knit thermal long-sleeve tee. Warm, breathable, and layer-friendly.',
+        }, {
+            id: 5,
+            name: 'Oxford Button-Down Shirt',
+            category: 'shirts',
+            images: [
+                'https://picsum.photos/seed/shirt5a/600/700',
+                'https://picsum.photos/seed/shirt5b/600/700',
+                'https://picsum.photos/seed/shirt5c/600/700',
+            ],
+            colors: [
+                { name: 'White', hex: '#FAFAFA' },
+                { name: 'Light Blue', hex: '#A3C4D9' },
+                { name: 'Pink', hex: '#D4A0A0' },
+                { name: 'Striped', hex: '#C0C8D4' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 4500,
+            priceVariations: { 'XL': 400, 'XXL': 600 },
+            addons: [
+                { name: 'Monogram Embroidery', price: 500 },
+                { name: 'Gift Wrap', price: 200 },
+                { name: 'Stain Protection Spray', price: 300 },
+            ],
+            badge: 'new',
+            description: 'Classic Oxford cloth shirt. Button-down collar, chest pocket, tailored fit.',
+        }, {
+            id: 6,
+            name: 'Leather Chelsea Boots',
+            category: 'closed-shoes',
+            images: [
+                'https://picsum.photos/seed/boots6a/600/700',
+                'https://picsum.photos/seed/boots6b/600/700',
+                'https://picsum.photos/seed/boots6c/600/700',
+            ],
+            colors: [
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Brown', hex: '#5C3A21' },
+                { name: 'Tan', hex: '#C4946C' },
+            ],
+            sizes: ['39', '40', '41', '42', '43', '44', '45'],
+            basePrice: 6500,
+            priceVariations: { '44': 400, '45': 600 },
+            addons: [
+                { name: 'Leather Care Kit', price: 800 },
+                { name: 'Gift Wrap', price: 200 },
+                { name: 'Express Delivery', price: 600 },
+            ],
+            badge: null,
+            description: 'Genuine leather Chelsea boots with elastic side panels. Pull-tab for easy wear.',
+        }, {
+            id: 7,
+            name: 'Leather Slide Sandals',
+            category: 'open-shoes',
+            images: [
+                'https://picsum.photos/seed/sandals7a/600/700',
+                'https://picsum.photos/seed/sandals7b/600/700',
+                'https://picsum.photos/seed/sandals7c/600/700',
+            ],
+            colors: [
+                { name: 'Brown', hex: '#5C3A21' },
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Tan', hex: '#C4946C' },
+            ],
+            sizes: ['39', '40', '41', '42', '43', '44', '45'],
+            basePrice: 2800,
+            priceVariations: { '44': 200, '45': 350 },
+            addons: [
+                { name: 'Gift Wrap', price: 200 },
+            ],
+            badge: 'sale',
+            description: 'Premium leather slide sandals. Cushioned footbed, durable sole — summer essential.',
+        }, {
+            id: 8,
+            name: 'Classic Crew Neck Tee',
+            category: 'short-sleeved',
+            images: [
+                'https://picsum.photos/seed/tee8a/600/700',
+                'https://picsum.photos/seed/tee8b/600/700',
+                'https://picsum.photos/seed/tee8c/600/700',
+            ],
+            colors: [
+                { name: 'White', hex: '#FAFAFA' },
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Navy', hex: '#1B3A5C' },
+                { name: 'Forest Green', hex: '#2D4A2D' },
+                { name: 'Maroon', hex: '#6B2020' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 1800,
+            priceVariations: { 'XL': 150, 'XXL': 250 },
+            addons: [
+                { name: 'Gift Wrap', price: 200 },
+            ],
+            badge: null,
+            description: '100% combed cotton crew neck tee. Pre-shrunk, breathable, everyday staple.',
+        }, {
+            id: 9,
+            name: 'Genuine Leather Belt',
+            category: 'others',
+            images: [
+                'https://picsum.photos/seed/belt9a/600/700',
+                'https://picsum.photos/seed/belt9b/600/700',
+                'https://picsum.photos/seed/belt9c/600/700',
+            ],
+            colors: [
+                { name: 'Black', hex: '#1A1A1A' },
+                { name: 'Brown', hex: '#5C3A21' },
+                { name: 'Tan', hex: '#C4946C' },
+            ],
+            sizes: ['30"', '32"', '34"', '36"', '38"', '40"'],
+            basePrice: 2500,
+            priceVariations: { '38"': 200, '40"': 350 },
+            addons: [
+                { name: 'Personalized Engraving', price: 400 },
+                { name: 'Gift Box', price: 300 },
+            ],
+            badge: 'new',
+            description: 'Full-grain leather belt with brushed steel buckle. Timeless accessory.',
+        }, {
+            id: 10,
+            name: 'Wool Blend Blazer',
+            category: 'others',
+            images: [
+                'https://picsum.photos/seed/blazer10a/600/700',
+                'https://picsum.photos/seed/blazer10b/600/700',
+                'https://picsum.photos/seed/blazer10c/600/700',
+            ],
+            colors: [
+                { name: 'Navy', hex: '#1B2A4A' },
+                { name: 'Charcoal', hex: '#3D3D3D' },
+                { name: 'Camel', hex: '#B8944B' },
+            ],
+            sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+            basePrice: 8500,
+            priceVariations: { 'XL': 500, 'XXL': 800 },
+            addons: [
+                { name: 'Tailoring Adjustment', price: 1000 },
+                { name: 'Gift Wrap', price: 200 },
+                { name: 'Garment Bag', price: 400 },
+            ],
+            badge: null,
+            description: 'Sophisticated wool-blend blazer. Notch lapel, two-button closure, fully lined.',
+        }, ];
+
+        // ╔══════════════════════════════════════════════════════════╗
+        // ║  END OF CONFIGURATION — Do not edit below unless       ║
+        // ║  you know what you're doing                            ║
+        // ╚══════════════════════════════════════════════════════════╝
+
+        // ────────────────────────────────────────
+        // STATE MANAGEMENT
+        // ────────────────────────────────────────
+        const carouselState = {}; // { productId: currentImageIndex }
+        const selections = {}; // { productId: { colorIndex, sizeIndex, addonIndices: [] } }
+
+        // Initialize state
+        PRODUCTS.forEach(p => {
+            carouselState[p.id] = 0;
+            selections[p.id] = {
+                colorIndex: 0,
+                sizeIndex: Math.floor(p.sizes.length / 2), // default to middle size
+                addonIndices: [],
+            };
+        });
+
+        // ────────────────────────────────────────
+        // HELPER FUNCTIONS
+        // ────────────────────────────────────────
+        function getTotalPrice(product) {
+            const sel = selections[product.id];
+            let total = product.basePrice;
+            // Size variation
+            const sizeKey = product.sizes[sel.sizeIndex];
+            if (product.priceVariations && product.priceVariations[sizeKey]) {
+                total += product.priceVariations[sizeKey];
+            }
+            // Add-ons
+            sel.addonIndices.forEach(i => {
+                total += product.addons[i].price;
+            });
+            return total;
+        }
+
+        function getWhatsAppMessage(product) {
+            const sel = selections[product.id];
+            const color = product.colors[sel.colorIndex];
+            const size = product.sizes[sel.sizeIndex];
+            const total = getTotalPrice(product);
+            let addonList = '';
+            sel.addonIndices.forEach(i => {
+                addonList += `  - ${product.addons[i].name} (+${currencySymbol}${product.addons[i].price.toLocaleString()})\n`;
+            });
+
+            const message =
+                `Hello! I'm interested in the following product:\n\n` +
+                `*Product:* ${product.name}\n` +
+                `*Color:* ${color.name}\n` +
+                `*Size:* ${size}\n` +
+                (addonList ? `*Add-ons:*\n${addonList}` : '') +
+                `*Total:* ${currencySymbol}${total.toLocaleString()}\n\n` +
+                `Is this item available? Please share payment & delivery details. Thank you!`;
+
+            return message;
+        }
+
+        function openWhatsApp(product) {
+            const message = getWhatsAppMessage(product);
+            const encoded = encodeURIComponent(message);
+            const url = `https://wa.me/${whatsappNumber}?text=${encoded}`;
+            window.open(url, '_blank', 'noopener');
+        }
+
+        function openGeneralWhatsApp() {
+            const message = encodeURIComponent(
+                'Hello! I\'m browsing your collection at Gentleman\'s Wardrobe. Can you assist me with an order?');
+            const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(url, '_blank', 'noopener');
+        }
+
+        // ────────────────────────────────────────
+        // CAROUSEL LOGIC
+        // ────────────────────────────────────────
+        function navigateCarousel(productId, direction) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const total = product.images.length;
+            carouselState[productId] = (carouselState[productId] + direction + total) % total;
+            updateCarouselDOM(productId);
+        }
+
+        function goToImage(productId, index) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            carouselState[productId] = index;
+            updateCarouselDOM(productId);
+        }
+
+        function updateCarouselDOM(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const currentIndex = carouselState[productId];
+            const card = document.getElementById(`product-card-${productId}`);
+            if (!card) return;
+            // Update images
+            const imgs = card.querySelectorAll('.carousel-wrap img');
+            imgs.forEach((img, i) => {
+                img.classList.toggle('active', i === currentIndex);
+            });
+            // Update dots
+            const dots = card.querySelectorAll('.carousel-dots span');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // Auto-advance carousels
+        setInterval(() => {
+            PRODUCTS.forEach(p => {
+                // Only auto-advance if the card is visible
+                const card = document.getElementById(`product-card-${p.id}`);
+                if (card && card.offsetParent !== null) {
+                    const total = p.images.length;
+                    carouselState[p.id] = (carouselState[p.id] + 1) % total;
+                    updateCarouselDOM(p.id);
+                }
+            });
+        }, 4500);
+
+        // ────────────────────────────────────────
+        // SELECTION UPDATE
+        // ────────────────────────────────────────
+        function selectColor(productId, colorIndex) {
+            selections[productId].colorIndex = colorIndex;
+            refreshCardSelectionUI(productId);
+        }
+
+        function selectSize(productId, sizeIndex) {
+            selections[productId].sizeIndex = sizeIndex;
+            refreshCardSelectionUI(productId);
+        }
+
+        function toggleAddon(productId, addonIndex) {
+            const sel = selections[productId];
+            const idx = sel.addonIndices.indexOf(addonIndex);
+            if (idx > -1) {
+                sel.addonIndices.splice(idx, 1);
+            } else {
+                sel.addonIndices.push(addonIndex);
+            }
+            refreshCardSelectionUI(productId);
+        }
+
+        function refreshCardSelectionUI(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const sel = selections[productId];
+            const card = document.getElementById(`product-card-${productId}`);
+            if (!card) return;
+
+            // Update color swatches
+            const swatches = card.querySelectorAll('.color-swatch');
+            swatches.forEach((sw, i) => {
+                sw.classList.toggle('selected', i === sel.colorIndex);
+            });
+
+            // Update size buttons
+            const sizeBtns = card.querySelectorAll('.size-btn');
+            sizeBtns.forEach((btn, i) => {
+                btn.classList.toggle('selected', i === sel.sizeIndex);
+            });
+
+            // Update addon checkboxes
+            const addonChecks = card.querySelectorAll('.addon-checkbox');
+            addonChecks.forEach((cb, i) => {
+                cb.checked = sel.addonIndices.includes(i);
+            });
+
+            // Update price display
+            const priceEl = card.querySelector('.product-price');
+            const total = getTotalPrice(product);
+            const sizeKey = product.sizes[sel.sizeIndex];
+            const hasUpcharge = product.priceVariations && product.priceVariations[sizeKey];
+            if (priceEl) {
+                if (hasUpcharge || sel.addonIndices.length > 0) {
+                    priceEl.innerHTML =
+                        `${currencySymbol}${total.toLocaleString()} <span class="base-price">${currencySymbol}${product.basePrice.toLocaleString()}</span>`;
+                } else {
+                    priceEl.textContent = `${currencySymbol}${total.toLocaleString()}`;
+                }
+            }
+
+            // Update selection summary
+            const summaryEl = card.querySelector('.selection-summary');
+            if (summaryEl) {
+                const color = product.colors[sel.colorIndex];
+                const size = product.sizes[sel.sizeIndex];
+                let summaryText = `Selected: <strong>${color.name}</strong> | Size: <strong>${size}</strong>`;
+                if (sel.addonIndices.length > 0) {
+                    const addonNames = sel.addonIndices.map(i => product.addons[i].name).join(', ');
+                    summaryText += ` | Add-ons: <strong>${addonNames}</strong>`;
+                }
+                summaryEl.innerHTML = summaryText;
+            }
+
+            // Update WhatsApp button href
+            const waBtn = card.querySelector('.whatsapp-btn');
+            if (waBtn) {
+                const message = getWhatsAppMessage(product);
+                waBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            }
+        }
+
+        // ────────────────────────────────────────
+        // RENDER PRODUCT CARDS
+        // ────────────────────────────────────────
+        function renderProductCard(product) {
+            const sel = selections[product.id];
+            const total = getTotalPrice(product);
+            const sizeKey = product.sizes[sel.sizeIndex];
+            const hasUpcharge = product.priceVariations && product.priceVariations[sizeKey];
+
+            let badgeHTML = '';
+            if (product.badge === 'new') badgeHTML = '<span class="product-badge new">NEW</span>';
+            if (product.badge === 'sale') badgeHTML = '<span class="product-badge sale">SALE</span>';
+
+            // Carousel images
+            const imagesHTML = product.images.map((imgUrl, i) =>
+                `<img src="${imgUrl}" alt="${product.name} - View ${i + 1}" class="${i === 0 ? 'active' : ''}" loading="lazy">`
+            ).join('');
+
+            // Carousel dots
+            const dotsHTML = product.images.map((_, i) =>
+                `<span class="${i === 0 ? 'active' : ''}" onclick="goToImage(${product.id}, ${i})" title="Image ${i + 1}"></span>`
+            ).join('');
+
+            // Color swatches
+            const swatchesHTML = product.colors.map((c, i) =>
+                `<div class="color-swatch ${i === sel.colorIndex ? 'selected' : ''}"
+                     style="background-color: ${c.hex};"
+                     onclick="selectColor(${product.id}, ${i})"
+                     title="${c.name}">
+                     <span class="tooltip">${c.name}</span>
+                 </div>`
+            ).join('');
+
+            // Size buttons
+            const sizesHTML = product.sizes.map((s, i) =>
+                `<button class="size-btn ${i === sel.sizeIndex ? 'selected' : ''}"
+                     onclick="selectSize(${product.id}, ${i})">${s}</button>`
+            ).join('');
+
+            // Add-ons
+            const addonsHTML = product.addons.map((a, i) =>
+                `<label class="addon-item">
+                    <input type="checkbox" class="addon-checkbox" ${sel.addonIndices.includes(i) ? 'checked' : ''}
+                           onchange="toggleAddon(${product.id}, ${i})">
+                    ${a.name} <span class="addon-price">+${currencySymbol}${a.price.toLocaleString()}</span>
+                </label>`
+            ).join('');
+
+            // Selection summary
+            const color = product.colors[sel.colorIndex];
+            const size = product.sizes[sel.sizeIndex];
+            let summaryText = `Selected: <strong>${color.name}</strong> | Size: <strong>${size}</strong>`;
+            if (sel.addonIndices.length > 0) {
+                const addonNames = sel.addonIndices.map(i => product.addons[i].name).join(', ');
+                summaryText += ` | Add-ons: <strong>${addonNames}</strong>`;
+            }
+
+            const priceHTML = (hasUpcharge || sel.addonIndices.length > 0) ?
+                `${currencySymbol}${total.toLocaleString()} <span class="base-price">${currencySymbol}${product.basePrice.toLocaleString()}</span>` :
+                `${currencySymbol}${total.toLocaleString()}`;
+
+            const waMessage = getWhatsAppMessage(product);
+            const waURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
+
+            return `
+            <div class="product-card" id="product-card-${product.id}" data-category="${product.category}">
+                <div class="carousel-wrap">
+                    ${badgeHTML}
+                    ${imagesHTML}
+                    <button class="carousel-arrow prev" onclick="event.stopPropagation(); navigateCarousel(${product.id}, -1)" aria-label="Previous image">◀</button>
+                    <button class="carousel-arrow next" onclick="event.stopPropagation(); navigateCarousel(${product.id}, 1)" aria-label="Next image">▶</button>
+                    <div class="carousel-dots">${dotsHTML}</div>
+                </div>
+                <div class="card-body">
+                    <span class="product-category-label">${product.category.replace('-', ' ')}</span>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">${priceHTML}</div>
+                    <p class="price-note">${product.description}</p>
+
+                    <div class="color-section">
+                        <label>Color:</label>
+                        <div class="color-swatches">${swatchesHTML}</div>
+                    </div>
+
+                    <div class="size-section">
+                        <label>Size:</label>
+                        <div class="size-buttons">${sizesHTML}</div>
+                    </div>
+
+                    ${product.addons.length > 0 ? `
+                    <div class="addons-section">
+                        <label>Add-ons:</label>
+                        ${addonsHTML}
+                    </div>` : ''}
+
+                    <div class="selection-summary">${summaryText}</div>
+
+                    <a href="${waURL}" target="_blank" rel="noopener" class="whatsapp-btn"
+                       onclick="event.stopPropagation();">
+                        <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+                        </svg>
+                        Inquire via WhatsApp
+                    </a>
+                </div>
+            </div>`;
+        }
+
+        function renderAllProducts(filterCategory = 'all') {
+            const grid = document.getElementById('productsGrid');
+            const filtered = filterCategory === 'all' ?
+                PRODUCTS :
+                PRODUCTS.filter(p => p.category === filterCategory);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">No products found in this category. <br>Check back soon for new arrivals!</div>';
+            } else {
+                grid.innerHTML = filtered.map(p => renderProductCard(p)).join('');
+            }
+        }
+
+        // ────────────────────────────────────────
+        // CATEGORY FILTERING
+        // ────────────────────────────────────────
+        function setupCategoryFilters() {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const category = btn.getAttribute('data-category');
+                    renderAllProducts(category);
+                    // Re-initialize carousel states for newly rendered cards
+                    PRODUCTS.forEach(p => {
+                        updateCarouselDOM(p.id);
+                    });
+                });
+            });
+        }
+
+        // ────────────────────────────────────────
+        // FLOATING WHATSAPP
+        // ────────────────────────────────────────
+        function setupFloatingWhatsApp() {
+            const floatBtn = document.getElementById('floatingWaBtn');
+            floatBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openGeneralWhatsApp();
+            });
+            // Update header number display
+            document.getElementById('header-wa-number').textContent =
+                '+' + whatsappNumber.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '$1 $2 $3 $4');
+        }
+
+        // ────────────────────────────────────────
+        // INITIALIZATION
+        // ────────────────────────────────────────
+        function init() {
+            renderAllProducts('all');
+            setupCategoryFilters();
+            setupFloatingWhatsApp();
+            // Initial carousel DOM sync
+            PRODUCTS.forEach(p => updateCarouselDOM(p.id));
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        // ────────────────────────────────────────
+        // Pause carousel auto-advance on hover
+        // ────────────────────────────────────────
+        let autoAdvancePaused = false;
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('.carousel-wrap')) {
+                autoAdvancePaused = true;
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('.carousel-wrap') && !e.relatedTarget?.closest('.carousel-wrap')) {
+                autoAdvancePaused = false;
+            }
+        });
+        // Override setInterval behavior — we use a flag check
+        const originalInterval = setInterval(() => {
+            if (!autoAdvancePaused) {
+                PRODUCTS.forEach(p => {
+                    const card = document.getElementById(`product-card-${p.id}`);
+                    if (card && card.offsetParent !== null) {
+                        const total = p.images.length;
+                        carouselState[p.id] = (carouselState[p.id] + 1) % total;
+                        updateCarouselDOM(p.id);
+                    }
+                });
+            }
+        }, 4500);
+
+        console.log('✅ Gentleman\'s Wardrobe — Landing page ready!');
+        console.log('📝 Edit the PRODUCTS array and whatsappNumber in the <script> section to customize.');
+        console.log('📞 WhatsApp number:', '+' + whatsappNumber);
+        console.log('📦 Total products loaded:', PRODUCTS.length);
+        console.log('🏷️  Categories:', [...new Set(PRODUCTS.map(p => p.category))].join(', '));
+    </script>
+</body>
+</html>
